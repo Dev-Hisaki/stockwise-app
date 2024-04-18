@@ -2,10 +2,13 @@ package com.hisaki.stockwiseapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hisaki.stockwiseapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        lateinit var binding: ActivityMainBinding
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
