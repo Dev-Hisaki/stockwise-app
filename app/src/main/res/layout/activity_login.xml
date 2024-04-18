@@ -7,14 +7,14 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="@drawable/img"
     tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/logo_1_update_terbaru"
-        app:srcCompat="@drawable/logo_1_update_terbaru"
-        />
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:src="@drawable/logo1"
+        app:srcCompat="@drawable/logo1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_email"
@@ -45,17 +45,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_hide_password"
             android:maxLines="1"
             android:hint="Please enter password"/>
+
+        <TextView
+            android:id="@+id/forgot_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="250dp"
+            android:hint="Forgot Password?"
+            android:textColorHint="#808080" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
+        android:layout_width="238dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#E66C2C"
-        android:textColor="@color/black"
+        android:background="@drawable/rectangle_shape"
+        android:textColor="@color/white"
         android:text="Login"/>
 
     <TextView
