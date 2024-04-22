@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@drawable/img"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/img"
     tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -26,9 +26,9 @@
             android:id="@+id/text_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Please enter email"
             android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:hint="Please enter email"/>
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -36,25 +36,25 @@
         android:id="@+id/input_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Please enter password"
             android:inputType="textPassword"
-            android:maxLines="1"
-            android:hint="Please enter password"/>
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/forgot_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
             android:layout_marginStart="250dp"
+            android:layout_marginEnd="10dp"
             android:hint="Forgot Password?"
             android:textColorHint="#808080" />
 
@@ -65,8 +65,8 @@
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_shape"
-        android:textColor="@color/white"
-        android:text="Login"/>
+        android:text="Login"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/tv_register"
@@ -74,6 +74,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:padding="16dp"
-        android:text="Register Account ?"/>
+        android:text="Register Account ?" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
