@@ -1,7 +1,8 @@
 package com.hisaki.stockwiseapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hisaki.stockwiseapp.databinding.ActivityMainBinding
 
@@ -12,8 +13,27 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
+        replaceFragment(AdminHomeFragment())
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            val itemId: Int = item.getItemId()
+            if (itemId == R.id.home_button) {
+                replaceFragment(AdminHomeFragment())
+            } else if (itemId == R.id.stock_button) {
+                replaceFragment(AdminStockFragment())
+            }
+            true
+        }
+
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.background = null
         bottomNavigationView.menu.getItem(1).isEnabled = false
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frameLayout, fragment)
+        fragmentTransaction.commit()
     }
 }
