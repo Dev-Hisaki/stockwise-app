@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StockWise</string>
+    <string name="time">Recap, %1$S</string>
 </resources>
