@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
                 val isSuccess = db.loginUser(email, password)
                 if(isSuccess){
                     val i = Intent(this,MainActivity::class.java)
+                    i.putExtra("EMAIL", email)
                     startActivity(i)
                     finish()
                 }
