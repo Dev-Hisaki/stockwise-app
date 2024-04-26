@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             if (itemId == R.id.home_button) {
                 replaceFragment(AdminHomeFragment(), receivedEmail)
             } else if (itemId == R.id.stock_button) {
-                replaceFragment(AdminStockFragment()) // Replace with your Stock Fragment
+                replaceFragment(AdminStockFragment())
             }
             true
         }

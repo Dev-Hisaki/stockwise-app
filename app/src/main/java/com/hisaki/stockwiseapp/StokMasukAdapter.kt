@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 
 class StokMasukAdapter(
+    private val fragment: Fragment,
     private val itemList: List<StokMasukData>
 ) : RecyclerView.Adapter<StokMasukAdapter.ItemViewHolder>() {
 
