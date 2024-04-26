@@ -12,14 +12,16 @@ class MainActivity : AppCompatActivity() {
         var binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(AdminHomeFragment())
+        val receivedEmail = intent.getStringExtra("EMAIL").toString()
+
+        replaceFragment(AdminHomeFragment(), receivedEmail)
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             val itemId: Int = item.getItemId()
             if (itemId == R.id.home_button) {
-                replaceFragment(AdminHomeFragment())
+                replaceFragment(AdminHomeFragment(), receivedEmail)
             } else if (itemId == R.id.stock_button) {
-                replaceFragment(AdminStockFragment())
+                replaceFragment(AdminStockFragment()) // Replace with your Stock Fragment
             }
             true
         }
@@ -29,11 +31,15 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.menu.getItem(1).isEnabled = false
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment, email: String = "") {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+        if (email.isNotEmpty()) {
+            val bundle = Bundle()
+            bundle.putString("EMAIL", email)
+            fragment.arguments = bundle
+        }
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
     }
 }
-
