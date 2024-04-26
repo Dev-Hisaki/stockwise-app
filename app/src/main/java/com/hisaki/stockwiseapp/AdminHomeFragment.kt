@@ -48,11 +48,11 @@ class AdminHomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_admin_home, container, false)
+        val view = inflater.inflate(R.layout.stok_masuk_item_layout, container, false)
 
         // Initialize views
-        time = view.findViewById(R.id.time)
-        email = view.findViewById(R.id.email)
+        /*time = view.findViewById(R.id.time)
+        email = view.findViewById(R.id.email)*/
         receivedEmail = requireArguments().getString("EMAIL").toString()
 
         // Set text for time and email
