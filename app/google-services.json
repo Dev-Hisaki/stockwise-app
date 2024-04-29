@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82235222574",
+    "project_id": "stockwise-31d09",
+    "storage_bucket": "stockwise-31d09.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82235222574:android:b194bb2355bd805bab0dbf",
+        "android_client_info": {
+          "package_name": "com.hisaki.stockwiseapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwG-Yh_YDFIXrDdKWcA5k6IfQz1XvL0oM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
