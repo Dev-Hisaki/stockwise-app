@@ -85,7 +85,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/searchview_background" />
+            android:background="@drawable/bg_searchview" />
 
         <!--Admin Field-->
         <LinearLayout
@@ -128,8 +128,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card"
@@ -142,7 +142,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card2"
@@ -155,7 +155,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -167,9 +167,11 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -184,8 +186,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card3"
@@ -197,7 +199,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card4"
@@ -210,7 +212,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -257,8 +259,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card5"
@@ -285,7 +287,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -311,8 +313,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card7"
@@ -324,7 +326,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
 
                 <TextView
@@ -338,7 +340,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -364,8 +366,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card9"
@@ -377,7 +379,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card10"
@@ -390,7 +392,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -416,8 +418,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card11"
@@ -429,7 +431,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card12"
@@ -442,7 +444,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -468,8 +470,8 @@
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="11dp"
-                    android:src="@drawable/img_1"
-                    app:srcCompat="@drawable/img_1" />
+                    android:src="@drawable/image"
+                    app:srcCompat="@drawable/image" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card13"
@@ -481,7 +483,7 @@
                     android:padding="16dp"
                     android:text="Muhamad Haidar Al Farruq"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_view_inside_card14"
@@ -494,7 +496,7 @@
                     android:padding="16dp"
                     android:text="muhamadhaidar555@gmail.com"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
