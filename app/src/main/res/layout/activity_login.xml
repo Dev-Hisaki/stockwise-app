@@ -26,9 +26,11 @@
             android:id="@+id/text_input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please enter email"
             android:inputType="textEmailAddress"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:hint="Please enter email"/>
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,9 +47,10 @@
             android:id="@+id/text_input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please enter password"
             android:inputType="textPassword"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:hint="Please enter password"/>
 
         <TextView
             android:id="@+id/forgot_pwd"

@@ -6,61 +6,80 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AdminHomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdminHomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var recyclerViewStokKeluar: RecyclerView
+    private lateinit var recyclerViewStokMasuk: RecyclerView
+    private lateinit var stokKeluarAdapter: StokKeluarAdapter
+    private lateinit var stokMasukAdapter: StokMasukAdapter
+    private lateinit var email: TextView
+    private lateinit var receivedEmail: String
+    private lateinit var time: TextView
+    private lateinit var banyakStokKeluar: TextView
+    private lateinit var banyakStokMasuk: TextView
+    private var itemListStokKeluar = mutableListOf<StokKeluarData>()
+    private var itemListStokMasuk = mutableListOf<StokMasukData>()
+
+    fun getFormattedDate(): String {
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val currentDate = Date()
+        return dateFormat.format(currentDate)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_admin_home, container, false)
 
-        val textView: TextView = view.findViewById(R.id.hello_world)
-        textView.text = "Home Fragment"
+        email = view.findViewById(R.id.email)
+        time = view.findViewById(R.id.time)
+        banyakStokKeluar = view.findViewById(R.id.banyakStokKeluar)
+        banyakStokMasuk = view.findViewById(R.id.banyakStokMasuk)
+
+        itemListStokKeluar = ArrayList()
+        recyclerViewStokKeluar = view.findViewById(R.id.rvItemStokKeluar)
+        recyclerViewStokKeluar.layoutManager = LinearLayoutManager(requireContext())
+        stokKeluarAdapter = StokKeluarAdapter(this, itemListStokKeluar)
+
+        itemListStokMasuk = ArrayList()
+        recyclerViewStokMasuk = view.findViewById(R.id.rvItemStokMasuk)
+        recyclerViewStokMasuk.layoutManager = LinearLayoutManager(requireContext())
+        stokMasukAdapter = StokMasukAdapter(this, itemListStokMasuk)
+
+        prepareItemListData()
+        recyclerViewStokKeluar.adapter = stokKeluarAdapter
+        recyclerViewStokMasuk.adapter = stokKeluarAdapter
+
+        receivedEmail = requireArguments().getString("EMAIL").toString()
+        time.text = "Recap, ${getFormattedDate()}"
+        email.text = "Welcome Back, $receivedEmail!"
+        banyakStokKeluar.text = itemListStokKeluar.size.toString()
+        banyakStokMasuk.text = itemListStokMasuk.size.toString()
 
         return view
     }
 
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdminHomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdminHomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun prepareItemListData() {
+        // Laptop
+        itemListStokKeluar.add(StokKeluarData(1, "Laptop", "ASUS Vivobook 15", "Laptop 15 inci dengan prosesor Intel Core i3", 5000000.0))
+        itemListStokKeluar.add(StokKeluarData(5, "Laptop", "Acer Aspire 5", "Laptop 15 inci dengan RAM 8GB dan SSD 256GB", 6000000.0))
+        itemListStokKeluar.add(StokKeluarData(7, "Laptop", "HP Pavilion 14", "Laptop 14 inci dengan desain tipis dan ringan", 5500000.0))
+        itemListStokKeluar.add(StokKeluarData(9, "Laptop", "MacBook Air M1", "Laptop Apple dengan chip M1 yang powerful dan hemat daya", 14000000.0))
+        itemListStokMasuk.add(StokMasukData(2, "Smartphone", "Samsung Galaxy A53 5G", "Smartphone 5G dengan kamera 64MP", 6500000.0))
+        itemListStokMasuk.add(StokMasukData(4, "Smartphone", "Xiaomi Redmi Note 11 Pro", "Smartphone dengan layar AMOLED dan fast charging", 4200000.0))
+        itemListStokMasuk.add(StokMasukData(6, "Smartphone", "Realme 9 Pro+", "Smartphone dengan kamera 50MP dan pengisian daya 60W", 4500000.0))
+        itemListStokMasuk.add(StokMasukData(8, "Smartphone", "Vivo V23 5G", "Smartphone dengan kamera selfie 50MP dan desain ramping", 6000000.0))
+        stokKeluarAdapter.notifyDataSetChanged()
+        stokMasukAdapter.notifyDataSetChanged()
     }
+
 }

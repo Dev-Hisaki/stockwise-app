@@ -2,8 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="coffee">#5C4E4C</color>
     <color name="primary_color">#221E1F</color>
     <color name="secondary_color">#717171</color>
     <color name="box_color">#535050</color>
     <color name="button_color">#E25E3E</color>
+    <color name="black_background">#221E1F</color>
+    <color name="gray_background">#363636</color>
 </resources>
