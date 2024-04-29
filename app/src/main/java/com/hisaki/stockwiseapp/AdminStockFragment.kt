@@ -49,8 +49,8 @@ class AdminStockFragment : Fragment() {
     }
 
     private fun prepareItemListData() {
-        itemList.add(ItemStock("Televisi", R.drawable.televisi_dummy))
-        itemList.add(ItemStock("Kulkas", R.drawable.kulkas_dummy))
+        itemList.add(ItemStock("Televisi", R.drawable.img_televisi_dummy))
+        itemList.add(ItemStock("Kulkas", R.drawable.img_kulkas_dummy))
         recyclerItemStockAdapter.notifyDataSetChanged() // Notify adapter after adding data
     }
 

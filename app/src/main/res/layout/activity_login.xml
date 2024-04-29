@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/img"
+    android:background="@drawable/bg_login"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".LoginActivity">
@@ -13,8 +13,8 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="380dp"
         android:layout_height="380dp"
-        android:src="@drawable/logo1"
-        app:srcCompat="@drawable/logo1" />
+        android:src="@drawable/shape_logo_stockwise"
+        app:srcCompat="@drawable/shape_logo_stockwise" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_email"
@@ -64,7 +64,7 @@
         android:id="@+id/btn_login"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_shape"
+        android:background="@drawable/shape_rectangle_gradation"
         android:text="Login"
         android:textColor="@color/white" />
 
