@@ -20,6 +20,7 @@
             android:layout_gravity="top">
 
             <LinearLayout
+                android:id="@+id/backToHome"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:gravity="center"
@@ -127,6 +128,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="55dp"

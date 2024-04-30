@@ -39,6 +39,7 @@
                 android:text="Recap, 25 April 2024"/>
         </LinearLayout>
         <ImageView
+            android:id="@+id/navigateToProfileActivity"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/profile"/>
