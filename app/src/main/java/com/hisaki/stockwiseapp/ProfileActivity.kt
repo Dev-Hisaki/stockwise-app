@@ -30,6 +30,10 @@ class ProfileActivity : AppCompatActivity() {
                 startActivity(logoutIntent)
                 destroySession()
             }
+            testTransaction.setOnClickListener {
+                val i = Intent(this@ProfileActivity, TransactionTest::class.java)
+                startActivity(i)
+            }
             inputLayoutUsername.text = userName
             inputLayoutEmail.text = userEmail
         }
