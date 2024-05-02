@@ -173,6 +173,7 @@
             android:textStyle="bold"/>
 
         <RelativeLayout
+            android:id="@+id/hharga"
             android:layout_below="@id/id_harga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -207,6 +208,18 @@
         </RelativeLayout>
     </RelativeLayout>
 
-
+    <Button
+        android:layout_marginTop="650dp"
+        android:id="@+id/btn_tambahproduk"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginHorizontal="55dp"
+        android:background="@drawable/shape_button"
+        android:text="Tambah Produk"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
