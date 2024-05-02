@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="3dp"
@@ -90,13 +89,13 @@
         <!--Admin Field-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="55dp"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editTextText2"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="55dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="16dp"
@@ -221,13 +220,13 @@
         <!--User Field-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="55dp"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editTextText3"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="55dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="16dp"
