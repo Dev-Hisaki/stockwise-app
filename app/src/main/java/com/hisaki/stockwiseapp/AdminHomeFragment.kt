@@ -1,6 +1,9 @@
 package com.hisaki.stockwiseapp
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,7 +24,8 @@ class AdminHomeFragment : Fragment() {
     private lateinit var stokKeluarAdapter: StokKeluarAdapter
     private lateinit var stokMasukAdapter: StokMasukAdapter
     private lateinit var email: TextView
-    private lateinit var receivedEmail: String
+    private lateinit var sharedPreferences: SharedPreferences
+    private var userEmail: String? = null
     private lateinit var time: TextView
     private lateinit var banyakStokKeluar: TextView
     private lateinit var banyakStokMasuk: TextView
@@ -41,8 +45,10 @@ class AdminHomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_admin_home, container, false)
+
+        sharedPreferences = requireActivity().getSharedPreferences("shared_pref", MODE_PRIVATE)
+        userEmail = sharedPreferences.getString("Email", null)
 
         email = view.findViewById(R.id.email)
         time = view.findViewById(R.id.time)
@@ -64,11 +70,12 @@ class AdminHomeFragment : Fragment() {
         recyclerViewStokKeluar.adapter = stokKeluarAdapter
         recyclerViewStokMasuk.adapter = stokKeluarAdapter
 
-        receivedEmail = requireArguments().getString("EMAIL").toString()
-        time.text = "Recap, ${getFormattedDate()}"
-        email.text = "Welcome Back, $receivedEmail!"
-        banyakStokKeluar.text = itemListStokKeluar.size.toString()
-        banyakStokMasuk.text = itemListStokMasuk.size.toString()
+        userEmail?.let {
+            time.text = "Recap, ${getFormattedDate()}"
+            email.text = "Welcome Back, $it!"
+            banyakStokKeluar.text = itemListStokKeluar.size.toString()
+            banyakStokMasuk.text = itemListStokMasuk.size.toString()
+        }
 
         navigateToProfileActivity.setOnClickListener(View.OnClickListener {
             val intentToProfileActivity = Intent(requireContext(), ProfileActivity::class.java)
@@ -77,6 +84,7 @@ class AdminHomeFragment : Fragment() {
 
         return view
     }
+
 
     private fun prepareItemListData() {
         // Laptop

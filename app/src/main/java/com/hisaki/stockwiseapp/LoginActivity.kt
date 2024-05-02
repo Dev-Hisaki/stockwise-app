@@ -56,10 +56,12 @@ class LoginActivity : AppCompatActivity() {
                                 val passwordFromFirebase = documentSnapshot.getString("password")
                                 val roleFromFirebase = documentSnapshot.getString("role")
                                 if (email == emailFromFirebase && password == passwordFromFirebase) {
+                                    // Memindahkan pengaturan session ke sini
+                                    val username = documentSnapshot.getString("username")
+                                    setSession(email, password, username) // Menggunakan variabel username yang diperoleh
                                     if (roleFromFirebase == "admin") {
                                         val intent =
                                             Intent(this@LoginActivity, MainActivity::class.java)
-                                        setSession(email, password)
                                         startActivity(intent)
                                         finish()
                                     } else {
@@ -102,13 +104,16 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSession(email: String?, password: String?) {
+
+    private fun setSession(email: String?, password: String?, username: String?) {
         sharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
         editor = sharedPreferences.edit()
         editor.putString("Email", email)
         editor.putString("Password", password)
+        editor.putString("Username", username)
         editor.apply()
     }
+
 
     private fun getSession() {
         sharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)

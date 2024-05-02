@@ -85,10 +85,9 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/input_layout_email"
+                    android:id="@+id/input_layout_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Budi Santoso"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -118,9 +117,9 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/input_layout_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="budisantoso@gmail.com"
                     android:textAlignment="center" />
 
             </LinearLayout>

@@ -8,11 +8,17 @@ import com.hisaki.stockwiseapp.databinding.ActivityProfileBinding
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+    private lateinit var sharedPreferences: SharedPreferences
+    private var userEmail: String? = null
+    private var userName: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
+        userEmail = sharedPreferences.getString("Email", null)
+        userName = sharedPreferences.getString("Username", null)
 
         binding.apply {
             backToHome.setOnClickListener {
@@ -24,7 +30,8 @@ class ProfileActivity : AppCompatActivity() {
                 startActivity(logoutIntent)
                 destroySession()
             }
-
+            inputLayoutUsername.text = userName
+            inputLayoutEmail.text = userEmail
         }
     }
 
