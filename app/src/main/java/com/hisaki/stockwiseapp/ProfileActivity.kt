@@ -12,18 +12,8 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-        binding.backToHome.setOnClickListener {
-            finish()
-        }
-        binding.logoutButton.setOnClickListener {
-            val logoutIntent = Intent(this, LoginActivity::class.java)
-            startActivity(logoutIntent)
-            destroySession()
-=======
->>>>>>> Stashed changes
+
+
         binding.apply {
             backToHome.setOnClickListener {
                 finish()
@@ -34,10 +24,7 @@ class ProfileActivity : AppCompatActivity() {
                 startActivity(logoutIntent)
                 destroySession()
             }
-<<<<<<< Updated upstream
-=======
->>>>>>> c3b6b8377304d3db3f61696e6e276c93a2559351
->>>>>>> Stashed changes
+
         }
     }
 

@@ -15,10 +15,6 @@
         android:theme="@style/Theme.StockWise"
         tools:targetApi="31">
         <activity
-<<<<<<< Updated upstream
-            android:name=".TambahProduk"
-=======
-<<<<<<< HEAD
             android:name=".AdminStokBarang"
             android:exported="false" />
         <activity
@@ -30,17 +26,9 @@
             android:label="@string/title_activity_kelola_user"
             android:theme="@style/Theme.StockWise" />
         <activity
-            android:name=".LoginActivity"
-=======
+            android:name=".LoginActivity"/>
+        <activity
             android:name=".TambahProduk"
->>>>>>> c3b6b8377304d3db3f61696e6e276c93a2559351
->>>>>>> Stashed changes
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
