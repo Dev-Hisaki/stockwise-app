@@ -24,7 +24,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -35,7 +38,7 @@ android {
         jvmTarget = "1.8"
 
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
         compose = true

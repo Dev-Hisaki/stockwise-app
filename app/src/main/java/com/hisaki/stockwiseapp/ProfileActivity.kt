@@ -12,13 +12,16 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.backToHome.setOnClickListener {
-            finish()
-        }
-        binding.logoutButton.setOnClickListener {
-            val logoutIntent = Intent(this, LoginActivity::class.java)
-            startActivity(logoutIntent)
-            destroySession()
+        binding.apply {
+            backToHome.setOnClickListener {
+                finish()
+            }
+            logoutButton.setOnClickListener {
+                val logoutIntent = Intent(this@ProfileActivity, LoginActivity::class.java)
+                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)   // Clearing all activity before going to LoginActivity
+                startActivity(logoutIntent)
+                destroySession()
+            }
         }
     }
 
