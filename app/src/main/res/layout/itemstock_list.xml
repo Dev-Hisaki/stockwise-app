@@ -18,12 +18,12 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-<!--        <ImageView-->
-<!--            android:src="@drawable/img_profile_test"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:id="@+id/itemImg"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="125dp"/>-->
+        <ImageView
+            android:src="@drawable/img_profile_test"
+            android:scaleType="centerCrop"
+            android:id="@+id/itemImg"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"/>
 
         <TextView
             android:id="@+id/itemBarcode"
