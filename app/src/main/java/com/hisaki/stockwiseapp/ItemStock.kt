@@ -1,4 +1,9 @@
 package com.hisaki.stockwiseapp
 
-class ItemStock (var title: String, var image: Int){
-}
+data class ItemStock(
+    var barcode: String ?= null,
+    var id: Int ?= null,
+    var name: String ?= null,
+    var price: Long ?= null,
+    var stock: String ?= null
+)

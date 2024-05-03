@@ -18,23 +18,52 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:src="@drawable/img_profile_test"
-            android:scaleType="centerCrop"
-            android:id="@+id/itemImg"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"/>
+<!--        <ImageView-->
+<!--            android:src="@drawable/img_profile_test"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:id="@+id/itemImg"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="125dp"/>-->
 
         <TextView
-            android:id="@+id/itemTitle"
+            android:id="@+id/itemBarcode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
+            android:text="Item Barcode"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="Item Name"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"/>
 
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Item Price"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/itemStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Item Stock"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
