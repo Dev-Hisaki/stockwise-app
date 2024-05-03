@@ -2,11 +2,13 @@ package com.hisaki.stockwiseapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -21,7 +23,7 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
     }
 
     private fun fetchData() {
-        itemCollection.orderBy("id", Query.Direction.DESCENDING)
+        itemCollection.orderBy("id", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -44,10 +46,14 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = firestoreItemList[position]
-        holder.tvItemTitle.text = item.name
         holder.tvItemBarcode.text = item.barcode
+        holder.tvItemTitle.text = item.name
         holder.tvItemPrice.text = "Price: ${item.price}"
         holder.tvItemStock.text = "Stock: ${item.stock}"
+
+        Glide.with(fragment)
+            .load(item.img)
+            .into(holder.ivItemImg)
 
         holder.cardView.setOnClickListener {
             Toast.makeText(
@@ -69,10 +75,11 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvItemTitle: TextView = itemView.findViewById(R.id.itemBarcode)
-        val tvItemBarcode: TextView = itemView.findViewById(R.id.itemName)
+        val tvItemBarcode: TextView = itemView.findViewById(R.id.itemBarcode)
+        val tvItemTitle: TextView = itemView.findViewById(R.id.itemName)
         val tvItemPrice: TextView = itemView.findViewById(R.id.itemPrice)
         val tvItemStock: TextView = itemView.findViewById(R.id.itemStock)
+        val ivItemImg: ImageView = itemView.findViewById(R.id.itemImg)
         val cardView: CardView = itemView.findViewById(R.id.cardViewStock)
     }
 }
