@@ -15,6 +15,9 @@
         android:theme="@style/Theme.StockWise"
         tools:targetApi="31">
         <activity
+            android:name=".popup_produk_admin"
+            android:exported="false" />
+        <activity
             android:name=".AdminStokBarang"
             android:exported="false" />
         <activity
@@ -25,8 +28,7 @@
             android:exported="false"
             android:label="@string/title_activity_kelola_user"
             android:theme="@style/Theme.StockWise" />
-        <activity
-            android:name=".LoginActivity"/>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".TambahProduk"
             android:exported="false" />
@@ -47,9 +49,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
-        <activity android:name=".TransactionTest"/>
-
+            android:exported="false" />
+        <activity android:name=".TransactionTest" />
     </application>
 
 </manifest>

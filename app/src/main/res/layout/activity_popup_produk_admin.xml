@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:ems="5"
+            android:inputType="text"
+            android:text="Redmi Note 10 Pro 8/128">
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Kurangi Stock"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Edit Produk"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Hapus Produk"/>
+    </LinearLayout>
+
+</LinearLayout>
