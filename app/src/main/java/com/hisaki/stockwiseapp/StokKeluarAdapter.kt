@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 class StokKeluarAdapter(
     private val fragment: Fragment,
-    private val itemList: List<StokKeluarData>
+    private val itemList: MutableList<StokKeluarData>
 ) : RecyclerView.Adapter<StokKeluarAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleStokKeluarTextView)
         val idTextView: TextView = itemView.findViewById(R.id.idStokKeluarTextView)
-        val priceTextView: TextView = itemView.findViewById(R.id.priceStokKeluarTextView)
+        val quantityTextView: TextView = itemView.findViewById(R.id.quantityStokKeluar)
+        val totalAmountTextView: TextView = itemView.findViewById(R.id.totalAmountStokKeluarTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -26,9 +27,10 @@ class StokKeluarAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val itemData = itemList[position]
-        holder.titleTextView.text = itemData.title
+        holder.titleTextView.text = itemData.productName
         holder.idTextView.text = "00" + itemData.id.toString()
-        holder.priceTextView.text = "Rp." + "%.2f".format(itemData.price)
+        holder.quantityTextView.text = itemData.quantity.toString()
+        holder.totalAmountTextView.text = "Rp." + "%.2f".format(itemData.totalAmount)
     }
 
     override fun getItemCount(): Int {
