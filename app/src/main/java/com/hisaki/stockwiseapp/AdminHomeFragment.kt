@@ -1,18 +1,25 @@
 package com.hisaki.stockwiseapp
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -34,6 +41,31 @@ class AdminHomeFragment : Fragment() {
     private var itemListStokKeluar = mutableListOf<StokKeluarData>()
     private var itemListStokMasuk = mutableListOf<StokMasukData>()
 
+    fun detailTransactionDialog(productName: String, productId: Int, date: String, quantity: Int, leftover: Int, totalAmount: Double) {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setView(R.layout.popup_detail_transaksi)
+        val dialog = dialogBuilder.create()
+
+        dialog.setOnShowListener {
+            val popupProductName = dialog.findViewById<TextView>(R.id.productNameTextView)
+            val popupProductId = dialog.findViewById<TextView>(R.id.productIdValueTextView)
+            val popupDate = dialog.findViewById<TextView>(R.id.dateValueTextView)
+            val popupQuantity = dialog.findViewById<TextView>(R.id.quantityValueTextView)
+            val popupLeftover = dialog.findViewById<TextView>(R.id.leftoverValueTextView)
+            val popupTotalAmount = dialog.findViewById<TextView>(R.id.totalAmountValueTextView)
+
+            // Set text values if views are not null
+            popupProductName?.text = productName
+            popupProductId?.text = productId.toString()
+            popupDate?.text = date
+            popupQuantity?.text = quantity.toString()
+            popupLeftover?.text = leftover.toString()
+            popupTotalAmount?.text = "Rp." + "%.2f".format(totalAmount)
+        }
+
+        dialog.show()
+    }
+
     fun getFormattedDate(): String {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
         val currentDate = Date()
@@ -47,33 +79,74 @@ class AdminHomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_admin_home, container, false)
 
+        // Initialize adapters
+        stokKeluarAdapter = StokKeluarAdapter(this, itemListStokKeluar)
+        stokMasukAdapter = StokMasukAdapter(this, itemListStokMasuk)
+
+        // Set layout managers and adapters for RecyclerViews
+        recyclerViewStokKeluar = view.findViewById(R.id.rvItemStokKeluar)
+        recyclerViewStokKeluar.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewStokKeluar.adapter = stokKeluarAdapter
+
+        recyclerViewStokMasuk = view.findViewById(R.id.rvItemStokMasuk)
+        recyclerViewStokMasuk.layoutManager = LinearLayoutManager(requireContext())
+        recyclerViewStokMasuk.adapter = stokMasukAdapter
+
+        stokKeluarAdapter.setOnItemClickListener { stokKeluarData ->
+            detailTransactionDialog(
+                stokKeluarData.productName,
+                stokKeluarData.productId,
+                stokKeluarData.date,
+                stokKeluarData.quantity,
+                stokKeluarData.leftover,
+                stokKeluarData.totalAmount
+            )
+        }
+
+        stokMasukAdapter.setOnItemClickListener { stokMasukData ->
+            detailTransactionDialog(
+                stokMasukData.productName,
+                stokMasukData.productId,
+                stokMasukData.date,
+                stokMasukData.quantity,
+                stokMasukData.leftover,
+                stokMasukData.totalAmount
+            )
+        }
+
         val stockInRef = FirebaseFirestore.getInstance().collection("Transaction").whereEqualTo("type", TransactionRepository.TransactionType.IN)
         stockInRef.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 val transactionData = document.data
                 val id = document.id
                 val type = transactionData["type"] as String
+                val productId = (transactionData["productid"] as Long?)?.toInt() ?: 0
                 val productName = transactionData["productname"] as String
                 val productPrice = (transactionData["productprice"] as Double?) ?: 0.0
+                val leftover = (transactionData["leftover"] as Long?)?.toInt() ?: 0
                 val quantity = (transactionData["quantity"] as Long?)?.toInt() ?: 0
-
                 val totalAmount = (transactionData["totalamount"] as Double?) ?: 0.0
+                val timestamp = transactionData["date"] as Timestamp
+                val date = timestamp.toDate()
+                val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                val formattedDate = simpleDateFormat.format(date)
 
                 val stokMasukData = StokMasukData(
                     id = id.toInt(),
                     type = type,
+                    productId = productId,
                     productName = productName,
                     productPrice = productPrice,
+                    leftover = leftover,
                     quantity = quantity,
-                    totalAmount = totalAmount
+                    totalAmount = totalAmount,
+                    date = formattedDate
                 )
                 itemListStokMasuk.add(stokMasukData)
             }
 
-            // Set adapter RecyclerView dengan data yang sudah ada
-            stokMasukAdapter = StokMasukAdapter(this@AdminHomeFragment, itemListStokMasuk)
-            recyclerViewStokMasuk.adapter = stokMasukAdapter
             banyakStokMasuk.text = itemListStokMasuk.size.toString()
+            stokMasukAdapter.notifyDataSetChanged()
         }.addOnFailureListener { exception ->
             Log.e("AdminHomeFragment", "Error getting stock in data", exception)
         }
@@ -84,26 +157,33 @@ class AdminHomeFragment : Fragment() {
                 val transactionData = document.data
                 val id = document.id
                 val type = transactionData["type"] as String
+                val productId = (transactionData["productid"] as Long?)?.toInt() ?: 0
                 val productName = transactionData["productname"] as String
                 val productPrice = (transactionData["productprice"] as Double?) ?: 0.0
+                val leftover = (transactionData["leftover"] as Long?)?.toInt() ?: 0
                 val quantity = (transactionData["quantity"] as Long?)?.toInt() ?: 0
                 val totalAmount = (transactionData["totalamount"] as Double?) ?: 0.0
+                val timestamp = transactionData["date"] as Timestamp
+                val date = timestamp.toDate()
+                val simpleDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+                val formattedDate = simpleDateFormat.format(date)
 
                 val stokKeluarData = StokKeluarData(
                     id = id.toInt(),
                     type = type,
+                    productId = productId,
                     productName = productName,
                     productPrice = productPrice,
+                    leftover = leftover,
                     quantity = quantity,
-                    totalAmount = totalAmount
+                    totalAmount = totalAmount,
+                    date = formattedDate
                 )
                 itemListStokKeluar.add(stokKeluarData)
             }
 
-            // Set adapter RecyclerView dengan data yang sudah ada
-            stokKeluarAdapter = StokKeluarAdapter(this@AdminHomeFragment, itemListStokKeluar)
-            recyclerViewStokKeluar.adapter = stokKeluarAdapter
             banyakStokKeluar.text = itemListStokKeluar.size.toString()
+            stokKeluarAdapter.notifyDataSetChanged()
         }.addOnFailureListener { exception ->
             Log.e("AdminHomeFragment", "Error getting stock out data", exception)
         }
@@ -117,19 +197,6 @@ class AdminHomeFragment : Fragment() {
         banyakStokMasuk = view.findViewById(R.id.banyakStokMasuk)
         navigateToProfileActivity = view.findViewById(R.id.navigateToProfileActivity)
 
-        itemListStokKeluar = ArrayList()
-        recyclerViewStokKeluar = view.findViewById(R.id.rvItemStokKeluar)
-        recyclerViewStokKeluar.layoutManager = LinearLayoutManager(requireContext())
-        stokKeluarAdapter = StokKeluarAdapter(this, itemListStokKeluar)
-
-        itemListStokMasuk = ArrayList()
-        recyclerViewStokMasuk = view.findViewById(R.id.rvItemStokMasuk)
-        recyclerViewStokMasuk.layoutManager = LinearLayoutManager(requireContext())
-        stokMasukAdapter = StokMasukAdapter(this, itemListStokMasuk)
-
-        recyclerViewStokKeluar.adapter = stokKeluarAdapter
-        recyclerViewStokMasuk.adapter = stokMasukAdapter
-
         userEmail?.let {
             time.text = "Recap, ${getFormattedDate()}"
             email.text = "Welcome Back, $it!"
@@ -139,6 +206,7 @@ class AdminHomeFragment : Fragment() {
             val intentToProfileActivity = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intentToProfileActivity)
         })
+
         return view
     }
 }

@@ -12,6 +12,7 @@ class StokMasukAdapter(
     private val fragment: Fragment,
     private val itemList: MutableList<StokMasukData>
 ) : RecyclerView.Adapter<StokMasukAdapter.ItemViewHolder>() {
+    private var onItemClickListener: ((StokMasukData) -> Unit)? = null
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleStokMasukTextView)
@@ -28,6 +29,9 @@ class StokMasukAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val itemData = itemList[position]
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(itemData)
+        }
         holder.titleTextView.text = itemData.productName
         holder.idTextView.text = "00" + itemData.id.toString()
         holder.quantityTextView.text = itemData.quantity.toString()
@@ -36,5 +40,9 @@ class StokMasukAdapter(
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+
+    fun setOnItemClickListener(listener: (StokMasukData) -> Unit) {
+        this.onItemClickListener = listener
     }
 }

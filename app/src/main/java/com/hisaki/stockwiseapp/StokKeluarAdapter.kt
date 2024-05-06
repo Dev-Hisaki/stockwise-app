@@ -1,5 +1,6 @@
 package com.hisaki.stockwiseapp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ class StokKeluarAdapter(
     private val fragment: Fragment,
     private val itemList: MutableList<StokKeluarData>
 ) : RecyclerView.Adapter<StokKeluarAdapter.ItemViewHolder>() {
+    private var onItemClickListener: ((StokKeluarData) -> Unit)? = null
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleStokKeluarTextView)
@@ -27,6 +29,9 @@ class StokKeluarAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val itemData = itemList[position]
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(itemData)
+        }
         holder.titleTextView.text = itemData.productName
         holder.idTextView.text = "00" + itemData.id.toString()
         holder.quantityTextView.text = itemData.quantity.toString()
@@ -35,5 +40,9 @@ class StokKeluarAdapter(
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+
+    fun setOnItemClickListener(listener: (StokKeluarData) -> Unit) {
+        this.onItemClickListener = listener
     }
 }
