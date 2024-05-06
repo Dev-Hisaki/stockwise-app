@@ -61,6 +61,7 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
             <TextView
+                android:id="@+id/quantityStokMasuk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -71,7 +72,7 @@
                 android:gravity="end"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/priceStokMasukTextView"
+                android:id="@+id/totalAmountStokMasukTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"

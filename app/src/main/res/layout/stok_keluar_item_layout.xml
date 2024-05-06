@@ -61,6 +61,7 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
             <TextView
+                android:id="@+id/quantityStokKeluar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -71,7 +72,7 @@
                 android:gravity="end"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/priceStokKeluarTextView"
+                android:id="@+id/totalAmountStokKeluarTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
