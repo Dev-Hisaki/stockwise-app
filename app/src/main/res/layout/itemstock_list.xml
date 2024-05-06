@@ -7,7 +7,7 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="15dp"
     android:padding="5dp"
-    android:layout_margin="5dp"
+    android:layout_margin="15dp"
     tools:context=".AdminStockFragment"
     android:id="@+id/cardViewStock">
 
@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="#363636"
         android:orientation="vertical">
 
         <ImageView
@@ -30,8 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
             android:text="Item Barcode"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"/>
 
@@ -40,8 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
             android:text="Item Name"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"/>
 
@@ -50,8 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
             android:text="Item Price"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"/>
 
@@ -60,8 +64,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
             android:text="Item Stock"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"/>
 
