@@ -15,6 +15,15 @@
         android:theme="@style/Theme.StockWise"
         tools:targetApi="31">
         <activity
+            android:name=".Popup_Tambah_StokBarang_Admin"
+            android:exported="false" />
+        <activity
+            android:name=".Popup_Kurangi_StokBarang_Admin"
+            android:exported="false" />
+        <activity
+            android:name=".PopUp_StokBarang_User"
+            android:exported="false" />
+        <activity
             android:name=".popup_produk_admin"
             android:exported="false" />
         <activity
