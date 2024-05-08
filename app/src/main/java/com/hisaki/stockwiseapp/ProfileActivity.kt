@@ -34,6 +34,10 @@ class ProfileActivity : AppCompatActivity() {
                 val i = Intent(this@ProfileActivity, TransactionTest::class.java)
                 startActivity(i)
             }*/
+            kelolaAkunButton.setOnClickListener{
+                val kelolaAkunIntent = Intent(this@ProfileActivity, KelolaUserActivity::class.java)
+                startActivity(kelolaAkunIntent)
+            }
             inputLayoutUsername.text = userName
             inputLayoutEmail.text = userEmail
         }

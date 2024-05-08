@@ -131,9 +131,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="55dp"
-            android:layout_marginVertical="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/shape_button"
             android:text="Logout"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/kelolaAkunButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/shape_button"
+            android:text="KELOLA AKUN"
             android:textSize="16dp"
             android:textStyle="bold" />
 
