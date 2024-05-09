@@ -48,6 +48,9 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
+            android:name=".Pencarian"
+            android:exported="false"/>
+        <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>

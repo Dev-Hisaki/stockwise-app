@@ -1,55 +1,56 @@
 package com.hisaki.stockwiseapp
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.card.MaterialCardView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class AdminStockFragment : Fragment() {
+class Pencarian : AppCompatActivity() {
+
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerItemStockAdapter: RecyclerItemStockAdapter
+    private lateinit var searchAdapter: SearchAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var searchView: SearchView
 
     private val firestoreDb = FirebaseFirestore.getInstance()
     private val itemCollection = firestoreDb.collection("Product")
     private var originalItemList = mutableListOf<ItemStock>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_admin_stock, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_pencarian)
 
-        swipeRefreshLayout = view.findViewById(R.id.refreshstock)
-        recyclerView = view.findViewById(R.id.rvItemStock)
-        recyclerItemStockAdapter = RecyclerItemStockAdapter(this)
-        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(requireContext(), 2)
+        swipeRefreshLayout = findViewById(R.id.refreshsearch)
+        recyclerView = findViewById(R.id.scitemsearch)
+        searchAdapter = SearchAdapter(this)
+
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = recyclerItemStockAdapter
+        recyclerView.adapter = searchAdapter
 
-        val materialCardView: MaterialCardView = view.findViewById(R.id.mcvrv)
-        val linearLayout: LinearLayout = materialCardView.findViewById(R.id.llsearch)
-        linearLayout.setOnClickListener{
-            val intent = Intent(requireContext(),Pencarian::class.java)
-            startActivity(intent)
-        }
+        searchView = findViewById(R.id.searcch)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    searchItem(it)
+                }
+                return true
+            }
+        })
 
         fetchData()
 
         swipeRefreshLayout.setOnRefreshListener {
             fetchData()
         }
-
-        return view
     }
 
     private fun fetchData() {
@@ -70,11 +71,18 @@ class AdminStockFragment : Fragment() {
                 }
 
                 originalItemList = itemList.toMutableList()
-                recyclerItemStockAdapter.setData(itemList)
+                searchAdapter.setData(itemList)
                 swipeRefreshLayout.isRefreshing = false
             }
             .addOnFailureListener { exception ->
                 swipeRefreshLayout.isRefreshing = false
             }
+    }
+
+    private fun searchItem(query: String) {
+        val filteredList = originalItemList.filter {
+            it.name!!.contains(query, ignoreCase = true) || it.barcode!!.contains(query, ignoreCase = true)
+        }
+        searchAdapter.setData(filteredList.toMutableList())
     }
 }
