@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class UserAdapter (
     private val itemList: MutableList<UserData>
     ) : RecyclerView.Adapter<UserAdapter.ItemViewHolder>() {
-
+    private var onItemClickListener: ((UserData) -> Unit)? = null
         class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val userNameTextView: TextView = itemView.findViewById(R.id.userNameTextView)
             val userEmailTextView: TextView = itemView.findViewById(R.id.userEmailTextView)
@@ -22,6 +22,9 @@ class UserAdapter (
 
         override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
             val itemData = itemList[position]
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.invoke(itemData)
+            }
             holder.userNameTextView.text = itemData.name
             holder.userEmailTextView.text = itemData.email
         }
@@ -29,4 +32,8 @@ class UserAdapter (
         override fun getItemCount(): Int {
             return itemList.size
         }
+
+    fun setOnItemClickListener(listener: (UserData) -> Unit) {
+        this.onItemClickListener = listener
+    }
 }

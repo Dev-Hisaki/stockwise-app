@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/gray_background">
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Muhammad Haidar Al-Farruq"
+        android:textSize="20dp"
+        android:layout_margin="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/white"
+        android:layout_marginHorizontal="17dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/editUserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit User"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/accessButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubah Hak Akses"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/deleteUserButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus User"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

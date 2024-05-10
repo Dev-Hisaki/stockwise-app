@@ -43,7 +43,7 @@ class BuatAkunActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(
                             this@BuatAkunActivity,
-                            "Pembuatan akun berhasil",
+                            "User berhasil dibuat",
                             Toast.LENGTH_SHORT
                         ).show()
                         finish()
@@ -51,7 +51,7 @@ class BuatAkunActivity : AppCompatActivity() {
                     .addOnFailureListener {
                         Toast.makeText(
                             this@BuatAkunActivity,
-                            "Gagal melakukan pembuatan akun",
+                            "User gagal dibuat",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

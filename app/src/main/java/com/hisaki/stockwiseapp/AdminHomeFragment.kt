@@ -41,7 +41,7 @@ class AdminHomeFragment : Fragment() {
     private var itemListStokKeluar = mutableListOf<StokKeluarData>()
     private var itemListStokMasuk = mutableListOf<StokMasukData>()
 
-    fun detailTransactionDialog(productName: String, productId: Int, date: String, quantity: Int, leftover: Int, totalAmount: Double) {
+    private fun detailTransactionDialog(productName: String, productId: Int, date: String, quantity: Int, leftover: Int, totalAmount: Double) {
         val dialogBuilder = AlertDialog.Builder(requireContext())
         dialogBuilder.setView(R.layout.popup_detail_transaksi)
         val dialog = dialogBuilder.create()
@@ -62,11 +62,10 @@ class AdminHomeFragment : Fragment() {
             popupLeftover?.text = leftover.toString()
             popupTotalAmount?.text = "Rp." + "%.2f".format(totalAmount)
         }
-
         dialog.show()
     }
 
-    fun getFormattedDate(): String {
+    private fun getFormattedDate(): String {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
         val currentDate = Date()
         return dateFormat.format(currentDate)
