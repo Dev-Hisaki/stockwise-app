@@ -30,10 +30,10 @@ class ProfileActivity : AppCompatActivity() {
                 startActivity(logoutIntent)
                 destroySession()
             }
-            /*testTransaction.setOnClickListener {
-                val i = Intent(this@ProfileActivity, TransactionTest::class.java)
+            buatAkunButton.setOnClickListener {
+                val i = Intent(this@ProfileActivity, BuatAkunActivity::class.java)
                 startActivity(i)
-            }*/
+            }
             kelolaAkunButton.setOnClickListener{
                 val kelolaAkunIntent = Intent(this@ProfileActivity, KelolaUserActivity::class.java)
                 startActivity(kelolaAkunIntent)

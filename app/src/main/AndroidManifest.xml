@@ -15,6 +15,9 @@
         android:theme="@style/Theme.StockWise"
         tools:targetApi="31">
         <activity
+            android:name=".BuatAkunActivity"
+            android:exported="false" />
+        <activity
             android:name=".Popup_Tambah_StokBarang_Admin"
             android:exported="false" />
         <activity
@@ -49,7 +52,7 @@
             android:exported="false" />
         <activity
             android:name=".Pencarian"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
