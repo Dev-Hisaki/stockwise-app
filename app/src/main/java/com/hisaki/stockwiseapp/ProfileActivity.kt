@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hisaki.stockwiseapp.databinding.ActivityProfileBinding
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.RequestCreator
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
@@ -52,4 +54,9 @@ class ProfileActivity : AppCompatActivity() {
         editor.apply()
         this.finish()
     }
+}
+
+private fun RequestCreator.into(image_profile: String) {
+    val image_profile ="https://firebasestorage.googleapis.com/v0/b/stockwise-31d09.appspot.com/o/GLU7dd4bYAAXjcH.jpg?alt=media&token=d1562afa-c445-4ec4-86c2-40cf05ed8925"
+    Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/stockwise-31d09.appspot.com/o/GLU7dd4bYAAXjcH.jpg?alt=media&token=d1562afa-c445-4ec4-86c2-40cf05ed8925").into(image_profile);
 }
