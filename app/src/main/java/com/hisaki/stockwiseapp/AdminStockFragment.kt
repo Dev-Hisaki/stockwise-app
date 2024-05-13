@@ -1,10 +1,13 @@
 package com.hisaki.stockwiseapp
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.enableEdgeToEdge
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +25,7 @@ class AdminStockFragment : Fragment() {
     private val itemCollection = firestoreDb.collection("Product")
     private var originalItemList = mutableListOf<ItemStock>()
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +44,12 @@ class AdminStockFragment : Fragment() {
         val linearLayout: LinearLayout = materialCardView.findViewById(R.id.llsearch)
         linearLayout.setOnClickListener{
             val intent = Intent(requireContext(),Pencarian::class.java)
+            startActivity(intent)
+        }
+        val materialCardView1: MaterialCardView = view.findViewById(R.id.cardViewStock)
+        val linearLayout1: LinearLayout = materialCardView1.findViewById(R.id.mmakro)
+        linearLayout1.setOnClickListener {
+            val intent = Intent(requireContext(), AdminStokBarang::class.java)
             startActivity(intent)
         }
 

@@ -1,5 +1,9 @@
 package com.hisaki.stockwiseapp
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +23,7 @@ class Pencarian : AppCompatActivity() {
     private val itemCollection = firestoreDb.collection("Product")
     private var originalItemList = mutableListOf<ItemStock>()
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pencarian)
@@ -45,6 +50,14 @@ class Pencarian : AppCompatActivity() {
                 return true
             }
         })
+
+        val backButton: ImageButton = findViewById(R.id.backksearch)
+        backButton.setOnClickListener {
+            val intent = Intent(this, AdminStockFragment::class.java)
+            startActivity(intent)
+        }
+
+
 
         fetchData()
 
