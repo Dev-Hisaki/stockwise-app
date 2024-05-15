@@ -9,14 +9,17 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.GestureDetector
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
@@ -41,7 +44,14 @@ class AdminHomeFragment : Fragment() {
     private var itemListStokKeluar = mutableListOf<StokKeluarData>()
     private var itemListStokMasuk = mutableListOf<StokMasukData>()
 
-    private fun detailTransactionDialog(productName: String, productId: Int, date: String, quantity: Int, leftover: Int, totalAmount: Double) {
+    private fun detailTransactionDialog(
+        productName: String,
+        productId: Int,
+        date: String,
+        quantity: Int,
+        leftover: Int,
+        totalAmount: Double
+    ) {
         val dialogBuilder = AlertDialog.Builder(requireContext())
         dialogBuilder.setView(R.layout.popup_detail_transaksi)
         val dialog = dialogBuilder.create()
@@ -113,7 +123,8 @@ class AdminHomeFragment : Fragment() {
             )
         }
 
-        val stockInRef = FirebaseFirestore.getInstance().collection("Transaction").whereEqualTo("type", TransactionRepository.TransactionType.IN)
+        val stockInRef = FirebaseFirestore.getInstance().collection("Transaction")
+            .whereEqualTo("type", TransactionRepository.TransactionType.IN)
         stockInRef.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 val transactionData = document.data
@@ -150,7 +161,8 @@ class AdminHomeFragment : Fragment() {
             Log.e("AdminHomeFragment", "Error getting stock in data", exception)
         }
 
-        val stockOutRef = FirebaseFirestore.getInstance().collection("Transaction").whereEqualTo("type", TransactionRepository.TransactionType.OUT)
+        val stockOutRef = FirebaseFirestore.getInstance().collection("Transaction")
+            .whereEqualTo("type", TransactionRepository.TransactionType.OUT)
         stockOutRef.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 val transactionData = document.data

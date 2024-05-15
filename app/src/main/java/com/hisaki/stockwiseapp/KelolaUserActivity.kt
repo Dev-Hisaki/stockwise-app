@@ -63,12 +63,13 @@ class KelolaUserActivity : AppCompatActivity() {
         val changeAdminButton = dialogView.findViewById<Button>(R.id.changeAdminButton)
         val cancelAccessButton = dialogView.findViewById<Button>(R.id.cancelAccessButton)
 
-        accessTextView.text = "Apakah anda yakin ingin mengubah hak akses user $userName menjadi admin?"
+        accessTextView.text =
+            "Apakah anda yakin ingin mengubah hak akses user $userName menjadi admin?"
 
         changeAdminButton.setOnClickListener {
             val query = collectionRef.whereEqualTo("email", userEmail)
 
-            query.get().addOnSuccessListener { documents->
+            query.get().addOnSuccessListener { documents ->
                 for (document in documents) {
                     val documentId = document.id
 
@@ -103,7 +104,7 @@ class KelolaUserActivity : AppCompatActivity() {
                             ).show()
                         }
                 }
-            }.addOnFailureListener {e ->
+            }.addOnFailureListener { e ->
                 Log.e("UpdateUserRole", "Gagal mendapatkan user", e)
             }
         }
@@ -114,6 +115,7 @@ class KelolaUserActivity : AppCompatActivity() {
 
         dialog.show()
     }
+
     private fun deleteUserDialog(userName: String, userEmail: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.popup_hapus_akun, null)
@@ -173,7 +175,8 @@ class KelolaUserActivity : AppCompatActivity() {
         banyakAdmin = findViewById(R.id.banyakAdmin)
         banyakUser = findViewById(R.id.banyakUser)
 
-        val adminRef = FirebaseFirestore.getInstance().collection("User").whereEqualTo("role", "admin")
+        val adminRef =
+            FirebaseFirestore.getInstance().collection("User").whereEqualTo("role", "admin")
         adminRef.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 val adminGetData = document.data
@@ -194,7 +197,8 @@ class KelolaUserActivity : AppCompatActivity() {
             Log.e("KelolaUserActivity", "Error getting admin in data", exception)
         }
 
-        val userRef = FirebaseFirestore.getInstance().collection("User").whereEqualTo("role", "user")
+        val userRef =
+            FirebaseFirestore.getInstance().collection("User").whereEqualTo("role", "user")
         userRef.get().addOnSuccessListener { documents ->
             for (document in documents) {
                 val userGetData = document.data
@@ -230,7 +234,7 @@ class KelolaUserActivity : AppCompatActivity() {
             recycleViewUser.layoutManager = LinearLayoutManager(this@KelolaUserActivity)
             recycleViewUser.adapter = userAdapter
 
-            userAdapter.setOnItemClickListener {userData ->
+            userAdapter.setOnItemClickListener { userData ->
                 detailUserDialog(
                     userData.name,
                     userData.email
