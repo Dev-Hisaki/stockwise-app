@@ -37,5 +37,10 @@ class AdminStokBarang : AppCompatActivity() {
         tvItemPrice.text = "$price"
         tvItemStock.text = stock.toString()
 
+        val backbtn : ImageView = findViewById(R.id.ivbackbtn)
+        backbtn.setOnClickListener{
+            onBackPressed()
+        }
+
     }
 }

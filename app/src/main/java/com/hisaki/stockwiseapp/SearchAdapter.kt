@@ -1,5 +1,7 @@
 package com.hisaki.stockwiseapp
+
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class SearchAdapter(private val context: Context) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+class SearchAdapter(private val context: Context) :
+    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     inner class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val srbarcode: TextView = itemView.findViewById(R.id.srcbarcode)
@@ -42,12 +45,14 @@ class SearchAdapter(private val context: Context) : RecyclerView.Adapter<SearchA
             }
             .addOnFailureListener { exception ->
                 // Handle any errors
-                Toast.makeText(context, "Failed to fetch data: $exception", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Failed to fetch data: $exception", Toast.LENGTH_LONG)
+                    .show()
             }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.itemstocksearch_list, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.itemstocksearch_list, parent, false)
         return SearchViewHolder(view)
     }
 
@@ -63,11 +68,13 @@ class SearchAdapter(private val context: Context) : RecyclerView.Adapter<SearchA
             .into(holder.srimage)
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(
-                context,
-                item.name,
-                Toast.LENGTH_LONG
-            ).show()
+            val intent = Intent(context, AdminStokBarang::class.java)
+            intent.putExtra("img", item.img)
+            intent.putExtra("barcode", item.barcode)
+            intent.putExtra("name", item.name)
+            intent.putExtra("price", item.price)
+            intent.putExtra("stock", item.stock)
+            context.startActivity(intent)
         }
     }
 
