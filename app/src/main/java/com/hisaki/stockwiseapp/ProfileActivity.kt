@@ -65,6 +65,7 @@ class ProfileActivity : AppCompatActivity() {
                 val imgurl: String = result.getString("img") ?: ""
                 Glide.with(this)
                     .load(imgurl)
+                    .placeholder(R.drawable.img_loading)
                     .into(binding.imageProfile)
             }
     }

@@ -65,6 +65,8 @@ class RegisterActivity : AppCompatActivity() {
             data["name"] = name
             data["username"] = username
             data["password"] = password
+            data["img"] =
+                "https://firebasestorage.googleapis.com/v0/b/stockwise-31d09.appspot.com/o/ProfileImage%2Fdefault-profile.jpg?alt=media&token=48f2820c-d833-431a-b611-4c4778bb954a"
             data["role"] = role
 
             if (username.trim() != "" && email.trim() != "" && password.trim() != "") {
