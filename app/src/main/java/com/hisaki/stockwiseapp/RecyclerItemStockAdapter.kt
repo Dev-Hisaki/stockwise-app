@@ -1,4 +1,5 @@
 package com.hisaki.stockwiseapp
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,11 +57,14 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
             .into(holder.ivItemImg)
 
         holder.cardView.setOnClickListener {
-            Toast.makeText(
-                fragment.requireContext(),
-                item.name,
-                Toast.LENGTH_LONG
-            ).show()
+            val context = fragment.requireContext()
+            val intent = Intent(context, AdminStokBarang::class.java)
+            intent.putExtra("img",item.img)
+            intent.putExtra("barcode",item.barcode)
+            intent.putExtra("name",item.name)
+            intent.putExtra("price",item.price)
+            intent.putExtra("stock",item.stock)
+            context.startActivity(intent)
         }
     }
 

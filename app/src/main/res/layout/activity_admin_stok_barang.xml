@@ -10,7 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -21,16 +24,16 @@
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                android:src="@drawable/ic_back_button"/>
+                android:src="@drawable/ic_back_button" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
                 android:text="Stok Barang"
-                android:textSize="30dp"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:layout_marginLeft="3dp"/>
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -41,15 +44,16 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/ivItemImg"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@android:drawable/alert_dark_frame"/>
+                android:src="@android:drawable/alert_dark_frame" />
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -74,26 +78,16 @@
                         app:cardElevation="5dp">
 
                         <TextView
+                            android:id="@+id/tvItemName"
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
-                            android:text="Samsung Galaksi SSS"
+                            android:layout_marginLeft="15dp"
                             android:layout_marginTop="8dp"
-                            android:layout_marginLeft="15dp"
                             android:layout_marginRight="15dp"
-                            android:textSize="20dp"
+                            android:text="Samsung Galaksi SSS"
                             android:textColor="@color/white"
-                            android:textStyle="bold"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:text="6/128"
-                            android:layout_marginTop="35dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginRight="15dp"
                             android:textSize="20dp"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -101,23 +95,21 @@
             </LinearLayout>
 
 
-
-
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
                 android:text="ID Barcode"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_weight="1"
                 android:textSize="20dp"
-                android:layout_marginLeft="3dp"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -134,27 +126,28 @@
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="40dp"
+                    android:id="@+id/tvItemBarcode"
+                    android:layout_width="60dp"
                     android:layout_height="40dp"
-                    android:text="001"
-                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:text="A001"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="230dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:layout_marginLeft="230dp">
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_scanner"/>
+                    android:src="@drawable/ic_scanner" />
             </LinearLayout>
 
         </LinearLayout>
@@ -166,9 +159,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="35dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -176,20 +169,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:layout_marginRight="20dp"
-                    android:textSize="20dp"
                     android:text="Stok"
                     android:textColor="@color/white"
-                    android:textStyle="bold"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
                 android:text="Harga"
                 android:textColor="@color/white"
-                android:textStyle="bold"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -211,14 +204,15 @@
                     app:cardElevation="5dp">
 
                     <TextView
+                        android:id="@+id/tvItemStock"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="99"
-                        android:textSize="20dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"/>
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -238,14 +232,15 @@
                     app:cardElevation="5dp">
 
                     <TextView
-                        android:layout_width="100dp"
+                        android:id="@+id/tvItemPrice"
+                        android:layout_width="120dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="15dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
                         android:text="Rp.6.000"
-                        android:textSize="20dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"/>
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -253,49 +248,49 @@
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="353dp"
-        android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_marginTop="353dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/shape_button"
-                android:text="Tambah Stok"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/shape_button"
+                    android:text="Tambah Stok"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginVertical="10dp"
-                android:background="@drawable/shape_button"
-                android:text="Kurangi Stok"
-                android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/shape_button"
+                    android:text="Kurangi Stok"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
 
     </LinearLayout>
 
