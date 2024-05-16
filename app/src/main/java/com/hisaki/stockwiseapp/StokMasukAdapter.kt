@@ -1,8 +1,11 @@
 package com.hisaki.stockwiseapp
 
+import android.content.Context
+import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +39,10 @@ class StokMasukAdapter(
         holder.idTextView.text = "00" + itemData.id.toString()
         holder.quantityTextView.text = itemData.quantity.toString()
         holder.totalAmountTextView.text = "Rp." + "%.2f".format(itemData.totalAmount)
+        holder.itemView.setOnLongClickListener {
+            showPopup(it.context, it)
+            true
+        }
     }
 
     override fun getItemCount(): Int {
@@ -44,5 +51,26 @@ class StokMasukAdapter(
 
     fun setOnItemClickListener(listener: (StokMasukData) -> Unit) {
         this.onItemClickListener = listener
+    }
+
+    private fun showPopup(context: Context, anchorView: View) {
+        val popupMenu = PopupMenu(context, anchorView)
+        popupMenu.inflate(R.menu.bottom_navigation_menu)
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    // Tindakan saat menu item 1 diklik
+                    true
+                }
+
+                R.id.navigation_scanqr -> {
+                    // Tindakan saat menu item 2 diklik
+                    true
+                }
+
+                else -> false
+            }
+        }
+        popupMenu.show()
     }
 }
