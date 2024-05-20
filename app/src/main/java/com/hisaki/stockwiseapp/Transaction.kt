@@ -4,9 +4,8 @@ import java.util.Date
 
 data class Transaction (
     var id: Int? = null,
-    val userid: Int,
     val username: String,
-    val productid: Int,
+    val productid: String,
     val productname: String,
     val productprice: Double,
     val productstock: Int,
@@ -17,9 +16,8 @@ data class Transaction (
     val date: Date
 ) {
     constructor(
-        userid: Int,
         username: String,
-        productid: Int,
+        productid: String,
         productname: String,
         productprice: Double,
         productstock: Int,
@@ -28,7 +26,6 @@ data class Transaction (
         date: Date
     ) : this(
         null,
-        userid,
         username,
         productid,
         productname,

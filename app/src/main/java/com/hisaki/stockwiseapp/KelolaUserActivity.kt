@@ -85,7 +85,6 @@ class KelolaUserActivity : AppCompatActivity() {
                                 "User berhasil menjadi admin",
                                 Toast.LENGTH_SHORT
                             ).show()
-
                             val selectedUser = itemListUser.find { it.email == userEmail }
 
                             selectedUser?.let {
@@ -108,11 +107,9 @@ class KelolaUserActivity : AppCompatActivity() {
                 Log.e("UpdateUserRole", "Gagal mendapatkan user", e)
             }
         }
-
         cancelAccessButton.setOnClickListener {
             dialog.dismiss()
         }
-
         dialog.show()
     }
 
@@ -121,13 +118,10 @@ class KelolaUserActivity : AppCompatActivity() {
         val dialogView = layoutInflater.inflate(R.layout.popup_hapus_akun, null)
         dialogBuilder.setView(dialogView)
         val dialog = dialogBuilder.create()
-
         val deleteUserTextView = dialogView.findViewById<TextView>(R.id.deleteUserTextView)
         val confirmDeleteUserButton = dialogView.findViewById<Button>(R.id.confirmDeleteUserButton)
         val cancelDeleteButton = dialogView.findViewById<Button>(R.id.cancelDeleteButton)
-
         deleteUserTextView.text = "Apakah anda yakin ingin menghapus akun $userName?"
-
         confirmDeleteUserButton.setOnClickListener {
             val query = collectionRef.whereEqualTo("email", userEmail)
             query.get().addOnSuccessListener { documents ->
@@ -144,7 +138,6 @@ class KelolaUserActivity : AppCompatActivity() {
                             itemListUser.remove(it)
                             userAdapter.notifyDataSetChanged()
                         }
-
                         dialog.dismiss()
                         dialogAwal.dismiss()
                     }.addOnFailureListener {
@@ -159,8 +152,6 @@ class KelolaUserActivity : AppCompatActivity() {
                 Log.e("DeleteUser", "Gagal mendapatkan user", e)
             }
         }
-
-
         cancelDeleteButton.setOnClickListener {
             dialog.dismiss()
         }
@@ -241,11 +232,5 @@ class KelolaUserActivity : AppCompatActivity() {
                 )
             }
         }
-        /*enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.linearLayout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
     }
 }

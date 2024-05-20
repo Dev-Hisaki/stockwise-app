@@ -59,6 +59,7 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
         holder.cardView.setOnClickListener {
             val context = fragment.requireContext()
             val intent = Intent(context, AdminStokBarang::class.java)
+            intent.putExtra("id", item.id)
             intent.putExtra("img",item.img)
             intent.putExtra("barcode",item.barcode)
             intent.putExtra("name",item.name)

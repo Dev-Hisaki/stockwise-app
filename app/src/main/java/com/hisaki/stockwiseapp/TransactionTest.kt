@@ -21,9 +21,8 @@ class TransactionTest: AppCompatActivity() {
 
     private fun addTransaction() {
         val newTransaction = Transaction(
-            userid = 1,
             username = "admin",
-            productid = 1,
+            productid = "a",
             productname = "Permen",
             productprice = 500.00,
             productstock = 99,

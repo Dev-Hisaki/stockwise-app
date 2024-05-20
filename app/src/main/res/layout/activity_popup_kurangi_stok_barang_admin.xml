@@ -7,12 +7,21 @@
     android:layout_margin="8dp"
     android:orientation="vertical"
     tools:context=".Popup_Kurangi_StokBarang_Admin">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginRight="50dp"
+        android:layout_weight="1"
+        android:text="Kurangi Stok"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="27dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/namaBarangKurangiStokTextView"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginRight="50dp"
@@ -22,6 +31,7 @@
             android:textSize="20dp"/>
 
         <TextView
+            android:id="@+id/stokBarangKurangiStokTextView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -49,6 +59,7 @@
             android:gravity="end">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/kurangAngkaKurangiStokButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="10dp"
@@ -72,6 +83,7 @@
                 app:cardCornerRadius="25dp">
 
                 <TextView
+                    android:id="@+id/ubahStokKurangiStokTextView"
                     android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal"
@@ -90,6 +102,7 @@
             android:gravity="start">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tambahAngkaKurangiStokButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="9dp"
@@ -108,6 +121,7 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/confirmKurangStokTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"

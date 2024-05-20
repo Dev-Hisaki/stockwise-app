@@ -46,7 +46,7 @@ class AdminHomeFragment : Fragment() {
 
     private fun detailTransactionDialog(
         productName: String,
-        productId: Int,
+        productId: String,
         date: String,
         quantity: Int,
         leftover: Int,
@@ -130,7 +130,7 @@ class AdminHomeFragment : Fragment() {
                 val transactionData = document.data
                 val id = document.id
                 val type = transactionData["type"] as String
-                val productId = (transactionData["productid"] as Long?)?.toInt() ?: 0
+                val productId = (transactionData["productid"] as String)
                 val productName = transactionData["productname"] as String
                 val productPrice = (transactionData["productprice"] as Double?) ?: 0.0
                 val leftover = (transactionData["leftover"] as Long?)?.toInt() ?: 0
@@ -168,7 +168,7 @@ class AdminHomeFragment : Fragment() {
                 val transactionData = document.data
                 val id = document.id
                 val type = transactionData["type"] as String
-                val productId = (transactionData["productid"] as Long?)?.toInt() ?: 0
+                val productId = (transactionData["productid"] as String)
                 val productName = transactionData["productname"] as String
                 val productPrice = (transactionData["productprice"] as Double?) ?: 0.0
                 val leftover = (transactionData["leftover"] as Long?)?.toInt() ?: 0

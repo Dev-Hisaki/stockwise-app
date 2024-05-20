@@ -3,7 +3,7 @@ package com.hisaki.stockwiseapp
 data class StokMasukData(
     val id: Int,
     val type: String,
-    val productId: Int,
+    val productId: String,
     val productName: String,
     val productPrice: Double,
     val leftover: Int,
