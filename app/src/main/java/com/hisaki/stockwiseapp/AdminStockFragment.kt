@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -40,6 +41,12 @@ class AdminStockFragment : Fragment() {
         val linearLayout: LinearLayout = materialCardView.findViewById(R.id.llsearch)
         linearLayout.setOnClickListener{
             val intent = Intent(requireContext(),Pencarian::class.java)
+            startActivity(intent)
+        }
+
+        val addBtn: ImageView = view.findViewById(R.id.addstock)
+        addBtn.setOnClickListener {
+            val intent = Intent(requireContext(),TambahProduk::class.java)
             startActivity(intent)
         }
 
