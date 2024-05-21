@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -39,10 +39,10 @@
             android:exported="false" />
         <activity
             android:name=".KelolaUserActivity"
-            android:exported="false"
-            android:label="@string/title_activity_kelola_user"
-            android:theme="@style/Theme.StockWise" />
-        <activity android:name=".LoginActivity" />
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".TambahProduk"
             android:exported="false" />
@@ -67,7 +67,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-        <activity android:name=".TransactionTest" />
+        <activity
+            android:name=".TransactionTest"
+            android:exported="false" />
     </application>
 
 </manifest>

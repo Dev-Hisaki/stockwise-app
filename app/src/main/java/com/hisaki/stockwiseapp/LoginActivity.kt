@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         if (emailUser != null && passwordUser != null) {
             val intentDirectly = Intent(this, MainActivity::class.java)
             startActivity(intentDirectly)
+            finish()
         }
     }
 
@@ -58,7 +59,11 @@ class LoginActivity : AppCompatActivity() {
                                 if (email == emailFromFirebase && password == passwordFromFirebase) {
                                     // Memindahkan pengaturan session ke sini
                                     val username = documentSnapshot.getString("username")
-                                    setSession(email, password, username) // Menggunakan variabel username yang diperoleh
+                                    setSession(
+                                        email,
+                                        password,
+                                        username
+                                    ) // Menggunakan variabel username yang diperoleh
                                     if (roleFromFirebase == "admin") {
                                         val intent =
                                             Intent(this@LoginActivity, MainActivity::class.java)
@@ -125,4 +130,6 @@ class LoginActivity : AppCompatActivity() {
         binding.apply {
             textInputEmail.setText("")
             textInputPassword.setText("")
-        }}}
+        }
+    }
+}
