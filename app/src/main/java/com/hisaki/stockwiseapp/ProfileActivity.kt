@@ -5,30 +5,21 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.hisaki.stockwiseapp.databinding.ActivityProfileBinding
-import java.lang.Exception
-import java.util.UUID
-import kotlin.math.log
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var userEmail: String
     private lateinit var userName: String
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val fs: FirebaseStorage = FirebaseStorage.getInstance()
     private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,13 +90,43 @@ class ProfileActivity : AppCompatActivity() {
         if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {
             imageUri = data?.data
             binding.imageProfile.setImageURI(imageUri)
-            uploadImage()
-            getProfileImage()
-            Toast.makeText(this, "Foto profil berhasil diunggah", Toast.LENGTH_SHORT).show()
+            imageUri?.let { uploadImage(it) }
         }
     }
 
-    private fun uploadImage() {
-        db.collection("User").document(userEmail).update("img", imageUri)
+    private fun uploadImage(imageUri: Uri) {
+        val storageRef: StorageReference =
+            fs.reference.child("ProfileImage/pfp-${System.currentTimeMillis()}.jpg")
+        val uploadTask = storageRef.putFile(imageUri)
+
+        uploadTask.addOnSuccessListener {
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                val imageUrl = uri.toString()
+                db.collection("User").document(userEmail).update("img", imageUrl)
+                    .addOnSuccessListener {
+                        getProfileImage()
+                        Toast.makeText(
+                            this,
+                            "Gambar berhasil diunggah dan URL diperbarui",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(
+                            this,
+                            "Gagal memperbarui URL gambar di Firestore",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            }.addOnFailureListener {
+                Toast.makeText(
+                    this,
+                    "Gagal mendapatkan URL gambar dari Firebase Storage",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Gagal mengunggah gambar", Toast.LENGTH_SHORT).show()
+        }
     }
 }
