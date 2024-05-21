@@ -233,7 +233,6 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
-
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

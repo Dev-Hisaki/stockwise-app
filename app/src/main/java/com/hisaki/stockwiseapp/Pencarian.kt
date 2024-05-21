@@ -67,7 +67,7 @@ class Pencarian : AppCompatActivity() {
                 val itemList = mutableListOf<ItemStock>()
                 for (document in result) {
                     val barcode = document.getString("barcode") ?: ""
-                    val id = document.getLong("id")?.toInt() ?: 0
+                    val id = document.getString("id") ?: ""
                     val img = document.getString("img") ?: ""
                     val name = document.getString("name") ?: ""
                     val price = document.getLong("price") ?: 0

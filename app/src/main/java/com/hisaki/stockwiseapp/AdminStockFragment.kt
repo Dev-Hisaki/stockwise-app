@@ -14,7 +14,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class AdminStockFragment : Fragment() {
+class AdminStockFragment : Fragment(){
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerItemStockAdapter: RecyclerItemStockAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -66,7 +66,7 @@ class AdminStockFragment : Fragment() {
                 val itemList = mutableListOf<ItemStock>()
                 for (document in result) {
                     val barcode = document.getString("barcode") ?: ""
-                    val id = document.getLong("id")?.toInt() ?: 0
+                    val id = document.getString("id") ?: ""
                     val img = document.getString("img") ?: ""
                     val name = document.getString("name") ?: ""
                     val price = document.getLong("price") ?: 0

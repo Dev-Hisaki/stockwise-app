@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -97,7 +98,7 @@ class TambahProduk : AppCompatActivity() {
                 val imageUrl = uri.toString()
                 getNextProductId { nextId ->
                     val itemStock = ItemStock(
-                        id = nextId.toInt(), barcode = barcode, name = name, price = price, stock = stock, img = imageUrl
+                        id = nextId, barcode = barcode, name = name, price = price, stock = stock, img = imageUrl
                     )
 
                     // Tambahkan produk ke Firestore
@@ -113,18 +114,19 @@ class TambahProduk : AppCompatActivity() {
         }
     }
 
-    private fun getNextProductId(callback: (Long) -> Unit) {
+    private fun getNextProductId(callback: (String) -> Unit) {
         val counterRef = db.collection("Counters").document("ProductID")
         db.runTransaction { transaction ->
             val snapshot = transaction.get(counterRef)
             val currentId = snapshot.getLong("lastID") ?: 0
-            val nextId = currentId + 1
-            transaction.update(counterRef, "lastID", nextId)
+            val nextId = (currentId + 1).toString()
+            transaction.update(counterRef, "lastID", currentId + 1)
             nextId
         }.addOnSuccessListener { nextId ->
             callback(nextId)
         }.addOnFailureListener { e ->
-            Toast.makeText(this, "Gagal mendapatkan ID produk", Toast.LENGTH_SHORT).show()
+            Log.e("Tambah produk", "gagal mendapatkan id produk", e)
+            Toast.makeText(this@TambahProduk, "Gagal mendapatkan ID produk", Toast.LENGTH_SHORT).show()
         }
     }
 }

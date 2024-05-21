@@ -1,8 +1,10 @@
 package com.hisaki.stockwiseapp
+import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -67,6 +69,58 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
             intent.putExtra("stock",item.stock)
             context.startActivity(intent)
         }
+
+        holder.itemView.setOnLongClickListener{
+            view -> showPopup(view, position)
+            true
+        }
+    }
+
+    private fun showPopup(view: View, position: Int) {
+        val item = firestoreItemList[position]
+        val dialogView = LayoutInflater.from(view.context).inflate(R.layout.activity_popup_produk_admin, null)
+        val editBtn: TextView = dialogView.findViewById(R.id.editbtn)
+        val deleteBtn: TextView = dialogView.findViewById(R.id.delbtn)
+        val edtext: EditText = dialogView.findViewById(R.id.edtext)
+
+        edtext.setText(item.name)
+
+        val alertDialog = AlertDialog.Builder(view.context)
+            .setView(dialogView)
+            .create()
+
+        editBtn.setOnClickListener {
+            alertDialog.dismiss()
+            val context = fragment.requireContext()
+            val intent = Intent(context, AdminStokBarang::class.java)
+            intent.putExtra("id", item.id)
+            intent.putExtra("img", item.img)
+            intent.putExtra("barcode", item.barcode)
+            intent.putExtra("name", item.name)
+            intent.putExtra("price", item.price)
+            intent.putExtra("stock", item.stock)
+            fragment.startActivityForResult(intent, 1)
+        }
+
+        deleteBtn.setOnClickListener {
+            alertDialog.dismiss()
+            deleteItem(item.id.toString(), position)
+            Toast.makeText(view.context, "Item ${item.name} deleted", Toast.LENGTH_SHORT).show()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun deleteItem(itemId: String, position: Int){
+        itemCollection.document(itemId).delete().addOnSuccessListener {
+            Toast.makeText(fragment.requireContext(), "Item Deleted", Toast.LENGTH_SHORT).show()
+            firestoreItemList.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, firestoreItemList.size)
+        }
+            .addOnFailureListener{
+                exception -> Toast.makeText(fragment.requireContext(), "Error deleting item: $exception", Toast.LENGTH_LONG).show()
+            }
     }
 
     override fun getItemCount(): Int {
