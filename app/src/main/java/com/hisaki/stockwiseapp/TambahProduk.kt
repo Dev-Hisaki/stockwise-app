@@ -51,6 +51,7 @@ class TambahProduk : AppCompatActivity() {
         // Set OnClickListener for add product button
         binding.btnTambahproduk.setOnClickListener {
             uploadImageAndSaveProduct()
+            finish()
         }
 
         binding.btnback.setOnClickListener{
