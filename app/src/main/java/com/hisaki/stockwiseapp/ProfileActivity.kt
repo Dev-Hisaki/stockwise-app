@@ -29,8 +29,6 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var userName: String
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private val fs: FirebaseStorage = FirebaseStorage.getInstance()
-    private val sr: StorageReference = fs.reference
     private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +46,7 @@ class ProfileActivity : AppCompatActivity() {
             }
             logoutButton.setOnClickListener {
                 val logoutIntent = Intent(this@ProfileActivity, LoginActivity::class.java)
-                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)   // Clearing all activity before going to LoginActivity
+                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)   // Clearing all activity before going to LoginActivity
                 startActivity(logoutIntent)
                 destroySession()
             }

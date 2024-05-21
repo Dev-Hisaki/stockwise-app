@@ -22,6 +22,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -40,7 +42,7 @@ class AdminHomeFragment : Fragment() {
     private lateinit var time: TextView
     private lateinit var banyakStokKeluar: TextView
     private lateinit var banyakStokMasuk: TextView
-    private lateinit var navigateToProfileActivity: ImageView
+    private lateinit var navigateToProfileActivity: ShapeableImageView
     private var itemListStokKeluar = mutableListOf<StokKeluarData>()
     private var itemListStokMasuk = mutableListOf<StokMasukData>()
 
@@ -208,6 +210,8 @@ class AdminHomeFragment : Fragment() {
         banyakStokMasuk = view.findViewById(R.id.banyakStokMasuk)
         navigateToProfileActivity = view.findViewById(R.id.navigateToProfileActivity)
 
+        getProfileImage(navigateToProfileActivity)
+
         userEmail?.let {
             time.text = "Recap, ${getFormattedDate()}"
             email.text = "Welcome Back, $it!"
@@ -219,5 +223,27 @@ class AdminHomeFragment : Fragment() {
         })
 
         return view
+    }
+
+    private fun getProfileImage(profileImageShape: ShapeableImageView) {
+        val userEmail = sharedPreferences.getString("Email", null).toString()
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("User").document(userEmail).get()
+            .addOnCompleteListener { document ->
+                val result = document.result
+                val imgurl: String = result.getString("img") ?: ""
+                Glide.with(this)
+                    .load(imgurl)
+                    .placeholder(R.drawable.img_loading)
+                    .into(profileImageShape)
+            }
+            .addOnFailureListener {
+                Toast.makeText(
+                    context,
+                    "Failed to retrieve profile image " + it.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 }

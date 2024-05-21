@@ -41,11 +41,14 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/navigateToProfileActivity"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/profile" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_profile_test_4"
+                app:shapeAppearanceOverlay="@style/circular" />
+
         </LinearLayout>
 
         <LinearLayout
