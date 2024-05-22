@@ -33,14 +33,8 @@ data class Transaction (
         productstock,
         quantity,
         productprice * quantity,
-        if (type == TransactionRepository.TransactionType.IN) productstock + quantity else productstock - quantity,
+        productstock,
         type,
         date
-    )
+    )}
 
-    // Setter kustom untuk leftover
-    // Dapat digunakan jika kamu ingin mengubah leftover setelah objek Transaksi dibuat
-    fun setLeftover() {
-        leftover = if (type == TransactionRepository.TransactionType.IN) productstock + quantity else productstock - quantity
-    }
-}

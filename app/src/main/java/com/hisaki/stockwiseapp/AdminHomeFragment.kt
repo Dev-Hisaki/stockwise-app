@@ -72,7 +72,7 @@ class AdminHomeFragment : Fragment() {
             popupDate?.text = date
             popupQuantity?.text = quantity.toString()
             popupLeftover?.text = leftover.toString()
-            popupTotalAmount?.text = "Rp." + "%.2f".format(totalAmount)
+            popupTotalAmount?.text = formatRupiah(totalAmount)
         }
         dialog.show()
     }

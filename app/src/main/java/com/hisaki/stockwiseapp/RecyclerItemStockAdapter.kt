@@ -51,7 +51,7 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
         val item = firestoreItemList[position]
         holder.tvItemBarcode.text = item.barcode
         holder.tvItemTitle.text = item.name
-        holder.tvItemPrice.text = "Price: ${item.price}"
+        holder.tvItemPrice.text = "Price: ${formatRupiah(item.price!!.toDouble())}"
         holder.tvItemStock.text = "Stock: ${item.stock}"
 
         Glide.with(fragment)
