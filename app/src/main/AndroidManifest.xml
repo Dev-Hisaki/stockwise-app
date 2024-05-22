@@ -17,6 +17,13 @@
         android:theme="@style/Theme.StockWise"
         tools:targetApi="31">
         <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".BuatAkunActivity"
             android:exported="false" />
         <activity
