@@ -145,6 +145,9 @@ class AdminStokBarang : AppCompatActivity() {
                                         type = if (type == "tambah") TransactionRepository.TransactionType.IN else TransactionRepository.TransactionType.OUT,
                                         date = Date()
                                     )
+
+                                    tvItemStock.text = newStock.toString()
+
                                     transactionRepository.addTransaction(newTransaction)
                                     Toast.makeText(
                                         this@AdminStokBarang,
@@ -177,10 +180,24 @@ class AdminStokBarang : AppCompatActivity() {
 
         tambahStokButton.setOnClickListener {
             showBottomSheetDialog("tambah", name, stock)
+            val db = FirebaseFirestore.getInstance()
+            db.collection("Product").whereEqualTo("barcode", barcode).get()
+                .addOnCompleteListener { document ->
+                    val result = document.result.documents[0]
+                    val imgFromFirebase = result.getString("img")
+                    val qrcodeFromFirebase = result.getString("barcode")
+                    val nameFromFirebase = result.getString("name")
+                    val priceFromFirebase = result.getLong("price")
+                    val stockFromFirebase = result.getString("stock")
+
+                }
         }
 
         kurangStokButton.setOnClickListener {
             showBottomSheetDialog("kurang", name, stock)
+
         }
+
+
     }
 }
