@@ -38,7 +38,7 @@ class StokMasukAdapter(
         holder.titleTextView.text = itemData.productName
         holder.idTextView.text = "00" + itemData.id.toString()
         holder.quantityTextView.text = itemData.quantity.toString()
-        holder.totalAmountTextView.text = "Rp." + "%.2f".format(itemData.totalAmount)
+        holder.totalAmountTextView.text = formatRupiah(itemData.totalAmount)
         holder.itemView.setOnLongClickListener {
             showPopup(it.context, it)
             true
