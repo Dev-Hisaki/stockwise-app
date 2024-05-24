@@ -138,6 +138,7 @@
                 tools:layout_editor_absoluteY="551dp" />
 
             <ImageView
+                android:id="@+id/showQRCode"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
