@@ -41,16 +41,13 @@ class AdminStokBarang : AppCompatActivity() {
     private var userName: String? = null
     private val db = FirebaseFirestore.getInstance()
     private val collectionRef = db.collection("Product")
+    private var roleUser: String? = null
+
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*enableEdgeToEdge()*/
         setContentView(R.layout.activity_admin_stok_barang)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.RelativeLayout)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
+        getSession()
         val id = intent.getStringExtra("id")
         val img = intent.getStringExtra("img")
         val barcode = intent.getStringExtra("barcode")
@@ -197,24 +194,28 @@ class AdminStokBarang : AppCompatActivity() {
             onBackPressed()
         }
 
-        tambahStokButton.setOnClickListener {
-            showBottomSheetDialog("tambah", name, stock)
-            val db = FirebaseFirestore.getInstance()
-            db.collection("Product").whereEqualTo("barcode", barcode).get()
-                .addOnCompleteListener { document ->
-                    val result = document.result.documents[0]
-                    val imgFromFirebase = result.getString("img")
-                    val qrcodeFromFirebase = result.getString("barcode")
-                    val nameFromFirebase = result.getString("name")
-                    val priceFromFirebase = result.getLong("price")
-                    val stockFromFirebase = result.getString("stock")
+        if(roleUser == "admin"){
+            tambahStokButton.setOnClickListener {
+                showBottomSheetDialog("tambah", name, stock)
+                val db = FirebaseFirestore.getInstance()
+                db.collection("Product").whereEqualTo("barcode", barcode).get()
+                    .addOnCompleteListener { document ->
+                        val result = document.result.documents[0]
+                        val imgFromFirebase = result.getString("img")
+                        val qrcodeFromFirebase = result.getString("barcode")
+                        val nameFromFirebase = result.getString("name")
+                        val priceFromFirebase = result.getLong("price")
+                        val stockFromFirebase = result.getString("stock")
 
-                }
+                    }
+            }
+        } else {
+            tambahStokButton.visibility = View.GONE
         }
+
 
         kurangStokButton.setOnClickListener {
             showBottomSheetDialog("kurang", name, stock)
-
         }
 
         generateQRCodeButton = findViewById(R.id.showQRCode)
@@ -237,7 +238,7 @@ class AdminStokBarang : AppCompatActivity() {
         val saveButton = dialogView.findViewById<AppCompatButton>(R.id.saveQRCodeButton)
         val qrCodeImage = dialogView.findViewById<ImageView>(R.id.barcodeImage)
         saveButton.setOnClickListener {
-            if(qrCodeImage != null){
+            if (qrCodeImage != null) {
                 saveImage(qrCodeImage)
             }
         }
@@ -274,7 +275,10 @@ class AdminStokBarang : AppCompatActivity() {
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, "Image_${System.currentTimeMillis()}.jpg")
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/StockWise")
+            put(
+                MediaStore.MediaColumns.RELATIVE_PATH,
+                Environment.DIRECTORY_PICTURES + "/StockWise"
+            )
         }
 
         val uri: Uri? =
@@ -295,5 +299,10 @@ class AdminStokBarang : AppCompatActivity() {
             Toast.makeText(this, "Failed to save image", Toast.LENGTH_SHORT).show()
             e.printStackTrace()
         }
+    }
+
+    private fun getSession() {
+        sharedPreferences = getSharedPreferences("shared_pref", AppCompatActivity.MODE_PRIVATE)
+        roleUser = sharedPreferences.getString("Role", null)
     }
 }

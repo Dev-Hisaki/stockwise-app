@@ -27,7 +27,6 @@ class AdminStockFragment : Fragment() {
     private var originalItemList = mutableListOf<ItemStock>()
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
     private var roleUser: String? = null
 
     override fun onCreateView(
