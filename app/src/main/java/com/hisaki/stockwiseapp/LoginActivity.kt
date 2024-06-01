@@ -19,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var editor: SharedPreferences.Editor
     private var emailUser: String? = null
     private var passwordUser: String? = null
+    private var roleUser: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,21 +63,9 @@ class LoginActivity : AppCompatActivity() {
                                     setSession(
                                         email,
                                         password,
-                                        username
-                                    ) // Menggunakan variabel username yang diperoleh
-                                    if (roleFromFirebase == "admin") {
-                                        val intent =
-                                            Intent(this@LoginActivity, MainActivity::class.java)
-                                        startActivity(intent)
-                                        finish()
-                                    } else {
-                                        Toast.makeText(
-                                            this@LoginActivity,
-                                            "User bukan admin",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        clearInput()
-                                    }
+                                        username,
+                                        roleFromFirebase
+                                    )
                                 } else {
                                     Toast.makeText(
                                         this@LoginActivity,
@@ -110,12 +99,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun setSession(email: String?, password: String?, username: String?) {
+    private fun setSession(email: String?, password: String?, username: String?, role: String?) {
         sharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
         editor = sharedPreferences.edit()
         editor.putString("Email", email)
         editor.putString("Password", password)
         editor.putString("Username", username)
+        editor.putString("Role", role)
         editor.apply()
     }
 
@@ -124,6 +114,7 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("shared_pref", MODE_PRIVATE)
         emailUser = sharedPreferences.getString("Email", null)
         passwordUser = sharedPreferences.getString("Password", null)
+        roleUser = sharedPreferences.getString("Role", null)
     }
 
     private fun clearInput() {
