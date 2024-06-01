@@ -40,17 +40,19 @@ class ProfileActivity : AppCompatActivity() {
             }
             logoutButton.setOnClickListener {
                 val logoutIntent = Intent(this@ProfileActivity, LoginActivity::class.java)
-                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)   // Clearing all activity before going to LoginActivity
-                startActivity(logoutIntent)
+                logoutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)   // Clearing all activity before going to LoginActivity
                 destroySession()
+                startActivity(logoutIntent)
             }
             buatAkunButton.setOnClickListener {
                 val i = Intent(this@ProfileActivity, BuatAkunActivity::class.java)
                 startActivity(i)
             }
-            if(userRole == "admin"){
+
+            if (userRole == "admin") {
                 kelolaAkunButton.setOnClickListener {
-                    val kelolaAkunIntent = Intent(this@ProfileActivity, KelolaUserActivity::class.java)
+                    val kelolaAkunIntent =
+                        Intent(this@ProfileActivity, KelolaUserActivity::class.java)
                     startActivity(kelolaAkunIntent)
                 }
             } else {
@@ -72,7 +74,6 @@ class ProfileActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
-        this.finish()
     }
 
     private fun getProfileImage() {
@@ -93,6 +94,7 @@ class ProfileActivity : AppCompatActivity() {
         startActivityForResult(intent, 1001)
     }
 
+    @Deprecated("This function is deprecated but who cares")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1001 && resultCode == Activity.RESULT_OK) {

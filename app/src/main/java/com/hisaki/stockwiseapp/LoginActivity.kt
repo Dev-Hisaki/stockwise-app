@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                                         username,
                                         roleFromFirebase
                                     )
+                                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                                 } else {
                                     Toast.makeText(
                                         this@LoginActivity,
