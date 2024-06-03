@@ -4,7 +4,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -79,20 +78,34 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
     private fun showPopup(view: View, position: Int) {
         val item = firestoreItemList[position]
         val dialogView = LayoutInflater.from(view.context).inflate(R.layout.activity_popup_produk_admin, null)
-        val editBtn: TextView = dialogView.findViewById(R.id.editbtn)
+        val editstock: TextView = dialogView.findViewById(R.id.editstock)
+        val editproduk: TextView = dialogView.findViewById(R.id.editproduk)
         val deleteBtn: TextView = dialogView.findViewById(R.id.delbtn)
-        val edtext: EditText = dialogView.findViewById(R.id.edtext)
+        val tvproduct: TextView = dialogView.findViewById(R.id.tvproduk)
 
-        edtext.setText(item.name)
+        tvproduct.setText(item.name)
 
         val alertDialog = AlertDialog.Builder(view.context)
             .setView(dialogView)
             .create()
 
-        editBtn.setOnClickListener {
+        editstock.setOnClickListener {
             alertDialog.dismiss()
             val context = fragment.requireContext()
             val intent = Intent(context, AdminStokBarang::class.java)
+            intent.putExtra("id", item.id)
+            intent.putExtra("img", item.img)
+            intent.putExtra("barcode", item.barcode)
+            intent.putExtra("name", item.name)
+            intent.putExtra("price", item.price)
+            intent.putExtra("stock", item.stock)
+            fragment.startActivityForResult(intent, 1)
+        }
+
+        editproduk.setOnClickListener {
+            alertDialog.dismiss()
+            val context = fragment.requireContext()
+            val intent = Intent(context, EditProduk::class.java)
             intent.putExtra("id", item.id)
             intent.putExtra("img", item.img)
             intent.putExtra("barcode", item.barcode)
