@@ -24,14 +24,6 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="20dp">
         <TextView
-            android:id="@+id/editUserButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit User"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:layout_marginBottom="20dp"/>
-        <TextView
             android:id="@+id/accessButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -32,7 +32,7 @@ class TambahProduk : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
 
         // Enable Edge-to-Edge
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
 
         // Set padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->

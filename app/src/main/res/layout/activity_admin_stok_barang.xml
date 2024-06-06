@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/ivbackbtn"
             android:layout_width="wrap_content"
@@ -25,11 +26,11 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingVertical="8dp"
+            android:layout_height="48dp"
+            android:paddingVertical="10dp"
             android:text="Stok Barang"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.379"
@@ -52,6 +53,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:padding="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_profile_test"
@@ -104,6 +106,7 @@
             android:layout_weight="1"
             android:text="ID Barcode"
             android:textColor="@color/white"
+            android:paddingTop="20dp"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -153,6 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
@@ -198,6 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/linearLayout6"
