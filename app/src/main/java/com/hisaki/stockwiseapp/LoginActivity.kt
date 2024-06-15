@@ -27,9 +27,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         db = DB(this)
 
-        binding.tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
-        }
         binding.btnLogin.setOnClickListener {
             loginUser()
         }

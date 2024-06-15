@@ -213,8 +213,8 @@ class AdminHomeFragment : Fragment() {
         getProfileImage(navigateToProfileActivity)
 
         userEmail?.let {
-            time.text = "Recap, ${getFormattedDate()}"
-            email.text = "Welcome Back, $it!"
+            time.text = "Rekap, ${getFormattedDate()}"
+            email.text = "Selamat Datang, $it!"
         }
 
         navigateToProfileActivity.setOnClickListener(View.OnClickListener {

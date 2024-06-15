@@ -29,7 +29,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Welcome Back, yuu18id@gmail.com!"
+                    android:text="Selamat Datang, yuu18id@gmail.com!"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
@@ -38,7 +38,7 @@
                     android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Recap, 25 April 2024"
+                    android:text="Rekap, 25 April 2024"
                     android:textColor="@color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />

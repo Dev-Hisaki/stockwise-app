@@ -18,10 +18,6 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            tvLogin.setOnClickListener {
-                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-            }
-
             db = DB(this@RegisterActivity)
             btnRegister.setOnClickListener {
 //                registerUser()

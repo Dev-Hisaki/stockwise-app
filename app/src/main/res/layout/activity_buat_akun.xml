@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:hint="Please enter username"/>
+            android:hint="Masukkan Username"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,7 +50,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:hint="Please enter email"/>
+            android:hint="Masukkan Email"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +70,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:hint="Please enter password"/>
+            android:hint="Masukkan Password"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -50,7 +50,7 @@ class AdminAdapter(
         position: Int
     ) {
         val dialogView =
-            LayoutInflater.from(context).inflate(R.layout.popup_detail_kelola_akun_user, null)
+            LayoutInflater.from(context).inflate(R.layout.popup_detail_kelola_akun_admin, null)
         val dialogBuilder = AlertDialog.Builder(context)
             .setView(dialogView)
         val dialog = dialogBuilder.create()
@@ -58,12 +58,8 @@ class AdminAdapter(
 
         dialogView.findViewById<TextView>(R.id.userNameTextView)?.text = "Admin $userName"
 
-        val btnDeleteUser = dialogView.findViewById<TextView>(R.id.deleteUserButton)
         val btnChangeAccess = dialogView.findViewById<TextView>(R.id.accessButton)
 
-        btnDeleteUser.setOnClickListener {
-            deleteUserDialog(userName, userEmail)
-        }
         btnChangeAccess.setOnClickListener {
             changeAccessDialog(userName, userEmail, context, position)
         }
@@ -129,11 +125,6 @@ class AdminAdapter(
         }
 
         dialog.show()
-    }
-
-
-    private fun deleteUserDialog(userName: String, userEmail: String) {
-        TODO("Not yet implemented")
     }
 
     private fun deleteItem(position: Int) {
