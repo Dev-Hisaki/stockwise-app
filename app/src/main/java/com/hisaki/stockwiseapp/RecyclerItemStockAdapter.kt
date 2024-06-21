@@ -50,8 +50,8 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
         val item = firestoreItemList[position]
         holder.tvItemBarcode.text = item.barcode
         holder.tvItemTitle.text = item.name
-        holder.tvItemPrice.text = "Price: ${formatRupiah(item.price!!.toDouble())}"
-        holder.tvItemStock.text = "Stock: ${item.stock}"
+        holder.tvItemPrice.text = "Harga: ${formatRupiah(item.price!!.toDouble())}"
+        holder.tvItemStock.text = "Stok: ${item.stock}"
 
         Glide.with(fragment)
             .load(item.img)
@@ -79,7 +79,6 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
         val item = firestoreItemList[position]
         val dialogView = LayoutInflater.from(view.context).inflate(R.layout.activity_popup_produk_admin, null)
         val editstock: TextView = dialogView.findViewById(R.id.editstock)
-        val editproduk: TextView = dialogView.findViewById(R.id.editproduk)
         val deleteBtn: TextView = dialogView.findViewById(R.id.delbtn)
         val tvproduct: TextView = dialogView.findViewById(R.id.tvproduk)
 
@@ -102,18 +101,6 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
             fragment.startActivityForResult(intent, 1)
         }
 
-        editproduk.setOnClickListener {
-            alertDialog.dismiss()
-            val context = fragment.requireContext()
-            val intent = Intent(context, EditProduk::class.java)
-            intent.putExtra("id", item.id)
-            intent.putExtra("img", item.img)
-            intent.putExtra("barcode", item.barcode)
-            intent.putExtra("name", item.name)
-            intent.putExtra("price", item.price)
-            intent.putExtra("stock", item.stock)
-            fragment.startActivityForResult(intent, 1)
-        }
 
         deleteBtn.setOnClickListener {
             alertDialog.dismiss()
@@ -126,7 +113,6 @@ class RecyclerItemStockAdapter(private val fragment: Fragment) : RecyclerView.Ad
 
     private fun deleteItem(itemId: String, position: Int){
         itemCollection.document(itemId).delete().addOnSuccessListener {
-            Toast.makeText(fragment.requireContext(), "Item Deleted", Toast.LENGTH_SHORT).show()
             firestoreItemList.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, firestoreItemList.size)

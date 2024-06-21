@@ -12,5 +12,5 @@
     <item
         android:id="@+id/stock_button"
         android:icon="@drawable/ic_stock"
-        android:title="Stock" />
+        android:title="Stok" />
 </menu>
